@@ -1,0 +1,60 @@
+# Values pulled from https://github.com/wireless-broadband-alliance/RADIUS-VSA
+# Authored originally by https://github.com/SimeonOnSecurity
+
+VENDOR          WBA              14122
+
+BEGIN-VENDOR    WBA
+
+# Modern OpenRoaming Attributes
+ALIAS   WBA-Offered-Service                         26.14122.12
+ALIAS   WBA-Financial-Clearing-Provider             26.14122.13
+ALIAS   WBA-Data-Clearing-Provider                  26.14122.14
+ALIAS   WBA-Linear-Volume-Rate                      26.14122.15
+ALIAS   WBA-Identity-Provide                        26.14122.16
+ALIAS   WBA-Custom-SLA                              26.14122.17
+
+ATTRIBUTE       WBA-Offered-Service               12      string
+ATTRIBUTE       WBA-Financial-Clearing-Provider   13      string
+ATTRIBUTE       WBA-Data-Clearing-Provider        14      string
+ATTRIBUTE       WBA-Linear-Volume-Rate            15      struct
+ATTRIBUTE       WBA-Identity-Provider             16      string
+ATTRIBUTE       WBA-Custom-SLA                    17      struct
+
+# Values for WBA-Offered-Service
+VALUE   WBA-Offered-Service  OpenRoaming-Bronze   "OpenRoaming Bronze"
+VALUE   WBA-Offered-Service  OpenRoaming-Silver   "OpenRoaming Silver"
+VALUE   WBA-Offered-Service  OpenRoaming-Gold     "OpenRoaming Gold"
+
+# Define substructures for WBA-Linear-Volume-Rate
+STRUCT WBA-Linear-Volume-Rate
+    MEMBER Currency-CH1      octets[1]
+    MEMBER Currency-CH2      octets[1]
+    MEMBER Currency-CH3      octets[1]
+    MEMBER Index             uint8
+    MEMBER NANOS             uint32
+END-STRUCT
+
+# Define substructures for WBA-Custom-SLA
+STRUCT WBA-Custom-SLA
+    MEMBER Availability      uint8
+    MEMBER Bandwidth         uint24
+END-STRUCT
+
+# LEGACY WISPr Attributes
+ATTRIBUTE       WISPr-Location-ID                    1       string
+ATTRIBUTE       WISPr-Location-Name                  2       string
+ATTRIBUTE       WISPr-Logoff-URL                     3       string
+ATTRIBUTE       WISPr-Redirection-URL                4       string
+ATTRIBUTE       WISPr-Bandwidth-Min-Up               5       integer
+ATTRIBUTE       WISPr-Bandwidth-Min-Down             6       integer
+ATTRIBUTE       WISPr-Bandwidth-Max-Up               7       integer
+ATTRIBUTE       WISPr-Bandwidth-Max-Down             8       integer
+ATTRIBUTE       WISPr-Session-Terminate-Time         9       string
+ATTRIBUTE       WISPr-Session-Terminate-End-Of-Day   10      integer
+ATTRIBUTE       WISPr-Billing-Class-Of-Service       11      string
+
+END-VENDOR      WBA
+
+# Aliases for Vendor-Specific attributes
+ALIAS           WBA             Vendor-Specific.WBA
+
